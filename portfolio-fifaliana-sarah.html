@@ -1,0 +1,546 @@
+<html lang="en"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fifaliana Sarah — QA &amp; Digital Project Manager</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&amp;family=DM+Sans:wght@300;400;500;600&amp;family=DM+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink:       #0D0F14;
+    --paper:     #F7F5F0;
+    --mist:      #E8E5DE;
+    --accent:    #2C5F8A;
+    --accent-lt: #D6E6F4;
+    --ok:        #2A7A5B;
+    --ok-lt:     #D2EDE4;
+    --subtle:    #6E717A;
+    --white:     #FFFFFF;
+
+    --f-display: 'DM Serif Display', serif;
+    --f-body:    'DM Sans', sans-serif;
+    --f-mono:    'DM Mono', monospace;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--f-body);
+    font-size: 16px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── HEADER ── */
+  header {
+    background: var(--ink);
+    color: var(--white);
+    padding: 72px 5vw 56px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  header::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 380px; height: 380px;
+    border-radius: 50%;
+    background: var(--accent);
+    opacity: .18;
+    pointer-events: none;
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--f-mono);
+    font-size: .72rem;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--accent-lt);
+    margin-bottom: 20px;
+  }
+  .badge-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--ok); flex-shrink: 0; animation: blink 2s ease-in-out infinite; }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.2} }
+
+  h1 {
+    font-family: var(--f-display);
+    font-size: clamp(2.4rem, 6vw, 4.2rem);
+    font-weight: 400;
+    line-height: 1.1;
+    margin-bottom: 8px;
+  }
+  h1 em { font-style: italic; color: var(--accent-lt); }
+
+  .tagline {
+    font-size: 1.05rem;
+    color: #A8AEBA;
+    margin-bottom: 36px;
+    max-width: 520px;
+  }
+
+  .chips { display: flex; flex-wrap: wrap; gap: 10px; }
+  .chip {
+    background: rgba(255,255,255,.08);
+    border: 1px solid rgba(255,255,255,.14);
+    color: #D0D3DC;
+    font-family: var(--f-mono);
+    font-size: .72rem;
+    letter-spacing: .06em;
+    padding: 5px 12px;
+    border-radius: 3px;
+  }
+
+  /* ── DOWNLOAD BUTTON ── */
+  .btn-download {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 28px;
+    padding: 11px 22px;
+    background: var(--accent);
+    color: var(--white);
+    font-family: var(--f-mono);
+    font-size: .78rem;
+    letter-spacing: .06em;
+    text-decoration: none;
+    border-radius: 5px;
+    border: 1px solid rgba(255,255,255,.15);
+    transition: background .2s, transform .15s;
+  }
+  .btn-download:hover { background: #1e4870; transform: translateY(-1px); }
+  .btn-download svg { width: 15px; height: 15px; flex-shrink: 0; }
+
+  /* ── NAV ── */
+  nav {
+    background: var(--white);
+    border-bottom: 1px solid var(--mist);
+    padding: 0 5vw;
+    display: flex;
+    gap: 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  nav a {
+    display: block;
+    padding: 16px 20px;
+    font-size: .82rem;
+    font-weight: 500;
+    letter-spacing: .04em;
+    text-decoration: none;
+    color: var(--subtle);
+    border-bottom: 2px solid transparent;
+    transition: color .2s, border-color .2s;
+  }
+  nav a:hover { color: var(--ink); border-bottom-color: var(--accent); }
+
+  /* ── LAYOUT ── */
+  main { max-width: 920px; margin: 0 auto; padding: 64px 5vw 96px; }
+
+  section { margin-bottom: 72px; }
+
+  .section-eyebrow {
+    font-family: var(--f-mono);
+    font-size: .72rem;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-eyebrow::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--mist);
+  }
+
+  h2 {
+    font-family: var(--f-display);
+    font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+    font-weight: 400;
+    line-height: 1.2;
+    margin-bottom: 20px;
+  }
+
+  p { color: #2E3140; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── EXPERIENCE CARDS ── */
+  .exp-list { display: flex; flex-direction: column; gap: 24px; }
+
+  .exp-card {
+    background: var(--white);
+    border: 1px solid var(--mist);
+    border-radius: 8px;
+    padding: 28px 32px;
+    position: relative;
+    transition: box-shadow .2s;
+  }
+  .exp-card:hover { box-shadow: 0 6px 24px rgba(0,0,0,.07); }
+
+  .exp-card::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 24px; bottom: 24px;
+    width: 3px;
+    background: var(--accent);
+    border-radius: 0 3px 3px 0;
+  }
+
+  .exp-header { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; }
+  .exp-title { font-size: 1.05rem; font-weight: 600; color: var(--ink); }
+  .exp-period {
+    font-family: var(--f-mono);
+    font-size: .72rem;
+    color: var(--subtle);
+    background: var(--mist);
+    padding: 3px 10px;
+    border-radius: 3px;
+    white-space: nowrap;
+  }
+  .exp-company { font-size: .88rem; color: var(--accent); font-weight: 500; margin-bottom: 12px; }
+  .exp-body { font-size: .92rem; color: #404455; line-height: 1.6; }
+
+  .tag-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+  .tag {
+    font-family: var(--f-mono);
+    font-size: .68rem;
+    letter-spacing: .05em;
+    padding: 3px 9px;
+    border-radius: 3px;
+    background: var(--accent-lt);
+    color: var(--accent);
+  }
+  .tag.green { background: var(--ok-lt); color: var(--ok); }
+
+  /* ── SKILLS GRID ── */
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; }
+
+  .skill-block {
+    background: var(--white);
+    border: 1px solid var(--mist);
+    border-radius: 8px;
+    padding: 22px 24px;
+    transition: transform .15s;
+  }
+  .skill-block:hover { transform: translateY(-2px); }
+
+  .skill-icon { width: 36px; height: 36px; margin-bottom: 12px; color: var(--accent); }
+  .skill-icon svg { width: 100%; height: 100%; }
+  .skill-name { font-weight: 600; font-size: .92rem; margin-bottom: 6px; }
+  .skill-desc { font-size: .8rem; color: var(--subtle); line-height: 1.5; }
+
+  /* ── KEY NUMBERS ── */
+  .numbers { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 16px; margin-bottom: 40px; }
+  .number-card {
+    background: var(--ink);
+    color: var(--white);
+    border-radius: 8px;
+    padding: 24px 22px;
+    text-align: center;
+  }
+  .number-big { font-family: var(--f-display); font-size: 2.4rem; color: var(--accent-lt); line-height: 1; margin-bottom: 6px; }
+  .number-label { font-size: .76rem; color: #8C90A0; letter-spacing: .05em; }
+
+  /* ── CONTACT ── */
+  .contact-box {
+    background: var(--accent);
+    color: var(--white);
+    border-radius: 10px;
+    padding: 40px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+  .contact-box h3 { font-family: var(--f-display); font-size: 1.7rem; font-weight: 400; }
+  .contact-box p { color: rgba(255,255,255,.8); font-size: .92rem; margin-top: 6px; }
+  .contact-details { display: flex; flex-direction: column; gap: 10px; }
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-family: var(--f-mono);
+    font-size: .82rem;
+    color: rgba(255,255,255,.9);
+  }
+  .contact-item-icon { font-size: 1rem; }
+
+  /* ── FOOTER ── */
+  footer {
+    text-align: center;
+    padding: 32px 5vw;
+    border-top: 1px solid var(--mist);
+    font-family: var(--f-mono);
+    font-size: .72rem;
+    color: var(--subtle);
+    letter-spacing: .06em;
+  }
+
+  @media (max-width: 600px) {
+    nav { overflow-x: auto; }
+    .contact-box { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="badge"><span class="badge-dot"></span> Open to remote opportunities</div>
+  <h1>Fifaliana <em>Sarah</em><br>LANTONIAINA</h1>
+  <p class="tagline">Freelance · Remote · Madagascar</p>
+  <div class="chips">
+    <span class="chip">Community Management</span>
+    <span class="chip">Manual Testing</span>
+    <span class="chip">Virtual Assistance</span>
+    <span class="chip">AI Annotation</span>
+    <span class="chip">French–English</span>
+    <span class="chip">UTC+3</span>
+  </div>
+  <a href="#" class="btn-download" id="dl-btn" onclick="downloadPortfolio(event)">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+      <polyline points="7 10 12 15 17 10"></polyline>
+      <line x1="12" y1="15" x2="12" y2="3"></line>
+    </svg>
+    Télécharger ce portfolio
+  </a>
+</header>
+
+<script>
+function downloadPortfolio(e) {
+  e.preventDefault();
+  const html = document.documentElement.outerHTML;
+  const blob = new Blob([html], { type: 'text/html' });
+  const url  = URL.createObjectURL(blob);
+  const a    = document.createElement('a');
+  a.href     = url;
+  a.download = 'portfolio-fifaliana-sarah.html';
+  a.click();
+  URL.revokeObjectURL(url);
+}
+</script>
+
+<!-- NAV -->
+<nav>
+  <a href="#about">About</a>
+  <a href="#experience">Experience</a>
+  <a href="#skills">Skills</a>
+  <a href="#contact">Contact</a>
+</nav>
+
+<main>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-eyebrow">Profile</div>
+    <h2>Quality-first mindset,<br>delivered remotely.</h2>
+    <p>
+      I am a detail-oriented QA professional with hands-on experience testing web platforms and software applications, both as a Digital Project Manager and as an independent freelancer working with French clients. My work spans executing test scenarios, identifying defects, documenting findings, and collaborating with development teams to ship reliable products.
+    </p>
+    <p>
+      My background in banking operations, customer service, bookkeeping, and project management has sharpened my analytical thinking and my ability to follow structured processes with precision. I am comfortable working autonomously in asynchronous, international environments.
+    </p>
+
+    <div class="numbers" style="margin-top:36px;">
+      <div class="number-card">
+        <div class="number-big">2+</div>
+        <div class="number-label">Years QA Experience</div>
+      </div>
+      <div class="number-card">
+        <div class="number-big">FR / EN</div>
+        <div class="number-label">Languages</div>
+      </div>
+      <div class="number-card">
+        <div class="number-big">100%</div>
+        <div class="number-label">Remote Ready</div>
+      </div>
+      <div class="number-card">
+        <div class="number-big">UTC+3</div>
+        <div class="number-label">Madagascar</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="section-eyebrow">Experience</div>
+    <h2>Where quality was the deliverable.</h2>
+
+    <div class="exp-list">
+
+      <div class="exp-card">
+        <div class="exp-header">
+          <span class="exp-title">QA Freelancer — Web &amp; Digital Platforms</span>
+          <span class="exp-period">After 2022 → Present</span>
+        </div>
+        <div class="exp-company">Independent · French Clients (Remote)</div>
+        <div class="exp-body">
+          Provided quality assurance services to French companies, testing websites and digital platforms across browsers and devices. Responsibilities included verifying functionality against requirements, identifying and documenting bugs, writing clear reproduction steps, and delivering structured feedback reports to improve UX and product quality.
+        </div>
+        <div class="tag-row">
+          <span class="tag">Functional Testing</span>
+          <span class="tag">Bug Reports</span>
+          <span class="tag">UX Feedback</span>
+          <span class="tag">Cross-browser</span>
+          <span class="tag green">Remote</span>
+        </div>
+      </div>
+
+      <div class="exp-card">
+        <div class="exp-header">
+          <span class="exp-title">Digital Project Manager</span>
+          <span class="exp-period">Previous Role</span>
+        </div>
+        <div class="exp-company">Organisation (Madagascar / International)</div>
+        <div class="exp-body">
+          Managed digital projects end-to-end, with direct involvement in validating web platforms and software applications. Executed test scenarios, confirmed that functionalities met business requirements, identified issues, documented findings, and coordinated with technical teams to resolve defects before delivery.
+        </div>
+        <div class="tag-row">
+          <span class="tag">Test Scenarios</span>
+          <span class="tag">Acceptance Testing</span>
+          <span class="tag">Stakeholder Coordination</span>
+          <span class="tag">Documentation</span>
+        </div>
+      </div>
+
+      <div class="exp-card">
+        <div class="exp-header">
+          <span class="exp-title">Banking Operations &amp; Customer Service</span>
+          <span class="exp-period">Earlier Career</span>
+        </div>
+        <div class="exp-company">Banking Sector · Madagascar</div>
+        <div class="exp-body">
+          Handled banking operations, bookkeeping, and customer service. This role built a strong foundation in structured processes, accuracy, attention to detail, and clear written communication — skills that transfer directly to systematic QA work.
+        </div>
+        <div class="tag-row">
+          <span class="tag green">Analytical Thinking</span>
+          <span class="tag green">Process Accuracy</span>
+          <span class="tag green">Documentation</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="section-eyebrow">Skills</div>
+    <h2>Tools of the trade.</h2>
+
+    <div class="skills-grid">
+      <div class="skill-block">
+        <div class="skill-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+        </div>
+        <div class="skill-name">Community Management</div>
+        <div class="skill-desc">Animation de communautés en ligne, modération, création de contenus engageants et gestion de la présence digitale.</div>
+      </div>
+      <div class="skill-block">
+        <div class="skill-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"></polyline><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
+        </div>
+        <div class="skill-name">Manual Testing</div>
+        <div class="skill-desc">Exécution de scénarios de test, identification et documentation de bugs, validation fonctionnelle de sites et applications web.</div>
+      </div>
+      <div class="skill-block">
+        <div class="skill-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+        </div>
+        <div class="skill-name">Assistance Virtuelle</div>
+        <div class="skill-desc">Support administratif à distance, gestion d'agendas, rédaction de documents, coordination de tâches et suivi de projets.</div>
+      </div>
+      <div class="skill-block">
+        <div class="skill-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10"></path><path d="M12 6v6l4 2"></path><circle cx="19" cy="5" r="3" fill="currentColor" stroke="none" opacity=".3"></circle><path d="M17 5h4M19 3v4"></path></svg>
+        </div>
+        <div class="skill-name">Annotation IA</div>
+        <div class="skill-desc">Labellisation et annotation de données pour l'entraînement de modèles d'intelligence artificielle, avec rigueur et cohérence.</div>
+      </div>
+      <div class="skill-block">
+        <div class="skill-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+        </div>
+        <div class="skill-name">Rapports &amp; Documentation</div>
+        <div class="skill-desc">Rédaction de rapports clairs, de comptes rendus et de documentations structurées en français et en anglais.</div>
+      </div>
+      <div class="skill-block">
+        <div class="skill-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+        </div>
+        <div class="skill-name">Collaboration Internationale</div>
+        <div class="skill-desc">Expérience de travail à distance avec des clients français et des équipes internationales en mode asynchrone.</div>
+      </div>
+      <div class="skill-block">
+        <div class="skill-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+        </div>
+        <div class="skill-name">Français / Anglais</div>
+        <div class="skill-desc">Communication bilingue fluente, rédaction de rapports et échanges professionnels dans les deux langues.</div>
+      </div>
+      <div class="skill-block">
+        <div class="skill-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        </div>
+        <div class="skill-name">Souci du Détail</div>
+        <div class="skill-desc">Rigueur analytique développée en banque et en QA — détecter les incohérences que d'autres laissent passer.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="section-eyebrow">Contact</div>
+    <div class="contact-box">
+      <div>
+        <h3>Let's work together.</h3>
+        <p>Disponible pour des missions remote. Réponse rapide par email ou WhatsApp.</p>
+      </div>
+      <div class="contact-details">
+        <div class="contact-item">
+          <span class="contact-item-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+          </span>
+          Antananarivo, Madagascar
+        </div>
+        <div class="contact-item">
+          <span class="contact-item-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"></rect><polyline points="2,4 12,13 22,4"></polyline></svg>
+          </span>
+          <a href="mailto:sarahfifalianalantoniaina@gmail.com" style="color:rgba(255,255,255,.9);text-decoration:none;">sarahfifalianalantoniaina@gmail.com</a>
+        </div>
+        <div class="contact-item">
+          <span class="contact-item-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"></path><path d="M12 0C5.373 0 0 5.373 0 12c0 2.117.554 4.103 1.523 5.824L.057 23.882a.5.5 0 0 0 .61.61l6.058-1.466A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.686-.513-5.212-1.407l-.374-.222-3.878.939.955-3.878-.243-.393A9.956 9.956 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"></path></svg>
+          </span>
+          <a href="https://wa.me/261327692406" target="_blank" style="color:rgba(255,255,255,.9);text-decoration:none;">+261 32 769 2406</a>
+        </div>
+        <div class="contact-item">
+          <span class="contact-item-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+          </span>
+          Remote · UTC+3 · French · English
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  © 2025 Fifaliana Sarah LANTONIAINA &nbsp;·&nbsp; Community Manager · Manual Tester · Virtual Assistant · AI Annotator &nbsp;·&nbsp; Madagascar
+</footer>
+
+
+
+</body></html>
